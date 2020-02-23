@@ -98,7 +98,6 @@ class TableCustomerController extends Controller
                 ->update($data);
         $responseController = new ResponseController();
         $response;
-        $update = customerModel::create($request->all());
         if ($update) {
             $response = $responseController->response(true, 'Berhasil Update Customer');
         } else {
