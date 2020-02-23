@@ -1,0 +1,15 @@
+
+
+kode transaksi
+tanggal transaksi
+nama customer
+nomor hp/wa (readonly)
+emai (readonly)
+
+input produk (cari barang/jasa)
+kategori (jasa/produk)
+
+
+                
+                
+(debit/credit/cash)

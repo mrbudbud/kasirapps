@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\customerModel;
+use App\barangModel;
 use App\http\Controllers\ResponseController;
 
-class TableCustomerController extends Controller
+class barangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,18 +16,19 @@ class TableCustomerController extends Controller
      */
     public function index()
     {
-        //
-        $tb_customer = customerModel::paginate(6);
-        return view('customer.index')->with(['datas' => $tb_customer]);
+
+        $tb_barang = barangModel::paginate(6);
+        return view('barang.index')->with(['datas' => $tb_barang ]);
     }
 
-    public function cari(Request $request) {
-        $tb_customer = customerModel::where([
-            ['namaLengkap', 'LIKE', $request->get('keyword') . '%']
+    public function cari(Request $request){
+        $tb_barang = barangModel::where([
+            ['namaProduk', 'LIKE', $request->get('keyword') . '%']
         ])->paginate(6);
-        $hasil = $tb_customer->appends ( array ('keyword' => $request->input('keyword')));
-        return view('customer.index')->with(['datas' => $hasil]);
+        $hasil = $tb_barang->appends ( array('keyword' => $request->input('keyword')));
+        return view('barang.index')->with(['datas' => $hasil]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -47,14 +48,14 @@ class TableCustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //input data
-        $responseController = new ResponseController();
+        //input
+        $responseController = new responseController();
         $response;
-        $insert = customerModel::create($request->all());
+        $insert = barangModel::create($request->all());
         if ($insert) {
-            $response = $responseController->response(true, 'Berhasil Input Customer');
+            $response = $responseController->response(true, 'Berhasil Input Barang');
         } else {
-            $response = $responseController->response(false, 'Gagal Input Customer');
+            $response = $responseController->response(true, 'Gagal Input Barang');
         }
         // var_dump($response);
         return redirect()->back()->with($response);
@@ -79,8 +80,9 @@ class TableCustomerController extends Controller
      */
     public function edit($id)
     {
-        $tb_customer = customerModel::where('idCustomer', $id)->first();
-        return view('customer.formedit')->with(['data' => $tb_customer]);
+        //edit barang
+        $tb_barang = barangModel::where('idProduk', $id)->first();
+        return view('barang.formeditbarang')->with(['data' => $tb_barang]);
     }
 
     /**
@@ -92,19 +94,21 @@ class TableCustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //update barang
         $data = $request->all();
+        var_dump($data);
         unset($data['_token']);
-        $update = customerModel::where('idCustomer', $id)
+        $update = barangModel::where('idProduk', $id)
                 ->update($data);
         $responseController = new ResponseController();
         $response;
         if ($update) {
-            $response = $responseController->response(true, 'Berhasil Update Customer');
+            $response = $responseController->response(true, 'Berhasil Update Barang');
         } else {
-            $response = $responseController->response(false, 'Gagal Update Customer');
+            $response = $responseController->response(false, 'Gagal Update Barang');
         }
         // var_dump($response);
-        return redirect()->route('tampilCustomer')->with($response);
+        return redirect()->route('tampilBarang')->with($response);
     }
 
     /**

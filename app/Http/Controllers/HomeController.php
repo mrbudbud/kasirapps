@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('table_customer');
+        return view('home');
     }
 
     /**

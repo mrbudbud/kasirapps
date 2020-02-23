@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('header_content')
-    <a class="nav-link">Table Costumer</a>
+    <a class="nav-link">Table Barang</a>
 @endsection
 
 @section('main_content')
@@ -12,73 +12,75 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">
-            Edit Data Customer
+            Edit Data Barang
           </h3>
         </div>
         <div class="card-body no-padding">
-          <form action="{{ route('updateCustomer', $data->idCustomer) }}" method="POST">
+          <form action="{{ route('updateBarang', $data->idProduk) }}" method="POST">
               @csrf
               <div class="container-fluid">
               <div class="col-12">
               <div>
-                <label for="">Nama Lengkap</label>
+                <label for="">Jenis Produk</label>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-append">
                   <div class="input-group-text">
-                    <span class="fas fa-user"></span>
                   </div>
                 </div>
-                  <input value="{{ $data->namaLengkap }}" name="namaLengkap" type="text" class="form-control" placeholder="Nama Lengkap">
+                <select name="jenisProduk" class="form-control"> jenis
+                  <option selected value="{{ $data->jenisProduk }}">{{ $data->jenisProduk }}</option>
+                  <option value="V LINE (VITA ADVANCED)">V Line (Vita Advanced)</option>
+                  <option value="W LINE (WHITE GLOW)">W LineE (White Glow)</option>
+                  <option value="TRAVEL KIT">Travel Kit</option>
+                  <option value="SMART SKIN CREAM">Smart Skin Cream</option>
+                </select>
+                  {{-- <input value="{{ $data->jenisProduk }}" name="jenisProduk" type="text" class="form-control" placeholder="Jenis Produk"> --}}
                 </div>
                 <div>
-                  <label for="">Alamat</label>
+                  <label for="">Nama Produk</label>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-append">
                     <div class="input-group-text">
-                      <span class="fas fa-map-marked-alt"></span>
                     </div>
                   </div>
-                  <input value="{{ $data->alamat }}" name="alamat" type="text" class="form-control" placeholder="Alamat">
+                  <input value="{{ $data->namaProduk }}" name="namaProduk" type="text" class="form-control" placeholder="Nama Produk">
                 </div>
                 <div>
-                  <label for="">Tanggal Lahir</label>
+                  <label for="">Quantity</label>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-append">
                     <div class="input-group-text">
-                      <span class="fa fa-calendar"></span>
                     </div>
                   </div>
-                  <input value="{{ $data->tanggalLahir }}" name="tanggalLahir" type="date" class="form-control" placeholder="Tanggal Lahir">
+                  <input value="{{ $data->quantity }}" name="quantity" type="number" class="form-control" placeholder="Quantity">
                 </div>
                 <div>
-                  <label for="">Nomor HP/WA</label>
+                  <label for="">Harga</label>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-append">
                     <div class="input-group-text">
-                      <span class="fas fa-address-card"></span>
                     </div>
                   </div>
-                  <input value="{{ $data->nomorHp }}" name="nomorHp" type="number" class="form-control" placeholder="Nomor HP/WA">
+                  <input value="{{ $data->harga }}" name="harga" type="number" class="form-control" placeholder="Harga">
                 </div>
                 <div>
-                  <label for="">Email</label>
+                  <label for="">Stock</label>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-append">
                     <div class="input-group-text">
-                      <span class="fas fa-envelope"></span>
                     </div>
                   </div>
-                  <input value="{{ $data->email }}" name="email" type="email" class="form-control" placeholder="Email">
+                  <input value="{{ $data->stock }}" name="stock" type="number" class="form-control" placeholder="Stock">
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <a href="{{ route('tampilCustomer') }}">
+              <a href="{{ route('tampilBarang') }}">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Back</button>
               </a>
               <button type="submit" class="btn btn-primary">Update Data Costumer</button>
