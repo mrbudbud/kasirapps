@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth','ceklevel:1']], function(){
 
-    Route::get('/', 'HomeController@index')->name('transaksi');
+    Route::get('/home', 'HomeController@index')->name('transaksi');
 
     //customer
     Route::get('/customer', 'TableCustomerController@index')->name('tampilCustomer');
