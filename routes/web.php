@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     Route::get('/customer/cari', 'TableCustomerController@cari')->name('cariCustomer');
     Route::get('/customer/formedit/{id}', 'TableCustomerController@edit')->name('formEditCustomer');
     Route::post('/customer/update/{id}', 'TableCustomerController@update')->name('updateCustomer');
+    Route::get('/customer/delete/{id}', 'TableCustomerController@destroy')->name('deleteCustomer');
     
     //barang
     Route::get('/barang', 'barangController@index')->name('tampilBarang');

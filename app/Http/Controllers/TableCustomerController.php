@@ -103,7 +103,6 @@ class TableCustomerController extends Controller
         } else {
             $response = $responseController->response(false, 'Gagal Update Customer');
         }
-        // var_dump($response);
         return redirect()->route('tampilCustomer')->with($response);
     }
 
@@ -115,6 +114,14 @@ class TableCustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = customerModel::where('idCustomer', $id)->delete();
+        $responseController = new ResponseController();
+        $response;
+        if ($delete) {
+            $response = $responseController->response(true, 'Berhasil Menghapus Data Customer');
+        } else {
+            $response = $responseController->response(false, 'Gagal Menghapus Data Customer');
+        }
+        return redirect()->route('tampilCustomer')->with($response);
     }
 }

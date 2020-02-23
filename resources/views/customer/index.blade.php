@@ -60,7 +60,9 @@
                   <td>{{ $data -> email }}</td>
                   <td>
                     <a href="{{ route('formEditCustomer', $data->idCustomer) }}" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Hapus</a>
+                    <a href="{{ route('deleteCustomer', $data->idCustomer) }}">
+                      <button class="btn btn-danger" onclick="return konfirmasi()">Hapus</button>
+                    </a>
                     </td>
                 </tr>
                 @endforeach

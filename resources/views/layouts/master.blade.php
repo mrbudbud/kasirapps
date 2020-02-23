@@ -103,6 +103,17 @@
 
 		<!-- REQUIRED SCRIPTS -->
 		<!-- jQuery -->
+		<script type="text/javascript" language="javascript">
+        function konfirmasi () {
+            var pilihan = confirm ("Apakah Anda Yakin Menghapus Data ?");
+            if(pilihan){
+                return true
+                }else{
+                alert ("Proses Di Batalkan")
+                return false
+                }
+        }
+    </script>
 		<script src="{{ url('css/plugins/jquery/jquery.min.js')}}"></script>
 		<!-- Bootstrap -->
 		<script src="{{ url('css/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
