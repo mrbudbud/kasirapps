@@ -36,7 +36,7 @@
 			<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 					<a href="index3.html" class="brand-link">
-						<center><span class="brand-text font-weight-light">ADMIN</span></center>
+						<center><span class="brand-text font-weight-light">ATASAN</span></center>
 					</a>
 
 			<!-- Sidebar -->
@@ -51,20 +51,26 @@
 							<!-- Add icons to the links using the .nav-icon class
 							with font-awesome or any other icon font library -->
 							<li class="nav-item">
-								<a href="{{ route('transaksi')}}" class="nav-link">
+								<a href="#" class="nav-link">
 									<i class="nav-icon fas fa-edit"></i>
 									<p>Transaksi</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="{{ route('terapis')}}" class="nav-link">
+									<i class="nav-icon fas fa-edit"></i>
+									<p>Data terapis</p>
+								</a>
+							</li>
 							</li>
 							<li class="nav-item">
-								<a href="{{ route('tampilBarang')}}" class="nav-link">
+								<a href="#" class="nav-link">
 									<i class="nav-icon fas fa-dolly-flatbed"></i>
 									<p>Tambah Barang</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ route('tampilCustomer')}} " class="nav-link">
+								<a href="#" class="nav-link">
 									<i class="nav-icon fas fa-table"></i>
 									<p>Tabel Custommer</p>
 								</a>
@@ -92,7 +98,7 @@
 
 			<!-- Main Footer -->
 			<footer class="main-footer">
-				<strong>Copyright &copy; 2020 Admin</a>.</strong>
+				<strong>Copyright &copy; 2020</a>.</strong>
 				All rights reserved.
 				<div class="float-right d-none d-sm-inline-block">
 						<b>Version</b> 1.0

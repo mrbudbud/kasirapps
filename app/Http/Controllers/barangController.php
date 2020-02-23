@@ -120,5 +120,15 @@ class barangController extends Controller
     public function destroy($id)
     {
         //
+        $delete = barangModel::where('idProduk', $id)->delete();
+        $responseController = new ResponseController();
+        $response;
+        if ($delete) {
+            $response = $responseController->response(true, 'Berhasil Hapus data Produk');
+        } else {
+            $response = $responseController->response(true, 'Gagal Hapus Data Produk');
+        }
+        return redirect()->route('tampilBarang')-> with($response);
+
     }
 }

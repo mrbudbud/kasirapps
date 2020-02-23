@@ -83,7 +83,7 @@
               <a href="{{ route('tampilBarang') }}">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Back</button>
               </a>
-              <button type="submit" class="btn btn-primary">Update Data Costumer</button>
+              <button type="submit" class="btn btn-primary">Update Data Barang</button>
             </div>
           </form>
         </div>

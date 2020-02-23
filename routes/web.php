@@ -17,9 +17,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth','ceklevel:1']], function(){
-    Route::get('/home', 'HomeController@index')->name('transaksi');
     
-
+    Route::get('/home', 'HomeController@index')->name('transaksi');
+    //admin
     //customer
     Route::get('/customer', 'TableCustomerController@index')->name('tampilCustomer');
     Route::post('/customer/insertcustomer', 'TableCustomerController@store')->name('insertCustomer');
@@ -28,12 +28,19 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     Route::post('/customer/update/{id}', 'TableCustomerController@update')->name('updateCustomer');
     Route::get('/customer/delete/{id}', 'TableCustomerController@destroy')->name('deleteCustomer');
     
+    //admin
     //barang
     Route::get('/barang', 'barangController@index')->name('tampilBarang');
     Route::post('/barang/insertbarang', 'barangController@store')->name('insertBarang');
     Route::get('/barang/cari', 'barangController@cari')->name('cariBarang');
     Route::get('/barang/formeditbarang/{id}', 'barangController@edit')->name('formEditBarang');
     Route::post('/barang/update/{id}', 'barangController@update')->name('updateBarang');
+    Route::get('/barang/delete/{id}', 'barangController@destroy')->name('deleteBarang');
+    
+    //atasan
+    //terapis
+    Route::get('/terapis', 'TerapisController@index')->name('tampilTerapis');
+
     
     
 });

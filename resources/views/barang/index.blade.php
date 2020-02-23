@@ -60,7 +60,9 @@
                   <td>{{ $data -> stock }}</td>
                   <td>
                     <a href="{{ route('formEditBarang', $data->idProduk)}}" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Hapus</a>
+                    <a href="{{ route('deleteBarang', $data->idProduk) }}">
+                      <button class="btn btn-danger" onclick="return konfirmasi()">Hapus</button>
+                    </a>
                     </td>
                 </tr>
                 @endforeach
