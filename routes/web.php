@@ -18,5 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/table_customer', 'TableCustomerController@index')->name('table_customer');
-Route::post('/table_customer', 'TableCustomerController@store')->name('table_customer');
+Route::get('/table_customer', 'TableCustomerController@index')->name('homeCustomer');
+Route::post('/table_customer', 'TableCustomerController@store')->name('insertCustomer');
