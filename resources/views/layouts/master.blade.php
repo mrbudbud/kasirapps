@@ -129,13 +129,13 @@
 		<!-- jQuery Mapael -->
 		<script src="{{ url('css/plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
 		<script src="{{ url('css/plugins/raphael/raphael.min.js')}}"></script>
-		<script src="{{ url('css/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-		<script src="{{ url('css/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+		<!-- <script src="{{ url('css/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script> -->
+		<!-- <script src="{{ url('css/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script> -->
 		<!-- ChartJS -->
-		<script src="{{ url('css/plugins/chart.js/Chart.min.js')}}"></script>
+		<!-- <script src="{{ url('css/plugins/chart.js/Chart.min.js')}}"></script> -->
 
 		<!-- PAGE SCRIPTS -->
-		<script src="{{ url('css/dist/js/pages/dashboard2.js')}}"></script>
+		<!-- <script src="{{ url('css/dist/js/pages/dashboard2.js')}}"></script> -->
 	</body>
 
 </html>

@@ -17,7 +17,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth','ceklevel:1']], function(){
-    Route::get('/home', 'HomeController@index')->name('transaksi');
+    Route::get('/home', 'TransaksiController@index')->name('transaksi');
     
 
     //customer
@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     Route::get('/barang/cari', 'barangController@cari')->name('cariBarang');
     Route::get('/barang/formeditbarang/{id}', 'barangController@edit')->name('formEditBarang');
     Route::post('/barang/update/{id}', 'barangController@update')->name('updateBarang');
+    Route::post('/api/listbarang', 'barangController@apiListBarang');
     
     
 });
