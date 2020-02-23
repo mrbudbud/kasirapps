@@ -10,18 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/login', function () {
-    return view('auth/login');
+Route::get('/', function () {
+    return view('auth.login');
 });
-
 
 Auth::routes();
 
-
 Route::group(['middleware' => ['auth','ceklevel:1']], function(){
-
     Route::get('/home', 'HomeController@index')->name('transaksi');
+    
 
     //customer
     Route::get('/customer', 'TableCustomerController@index')->name('tampilCustomer');
@@ -42,7 +39,7 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
 
 
 //akses atasan
-Route::group(['middleware' => ['auth','ceklevel:2']], function(){
+// Route::group(['middleware' => ['auth','ceklevel:2']], function(){
 
     
-});
+// });
