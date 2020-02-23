@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\customerModel;
+use App\http\Controllers\ResponseController;
 
 class TableCustomerController extends Controller
 {
@@ -16,8 +17,16 @@ class TableCustomerController extends Controller
     public function index()
     {
         //
-        $tb_customer = customerModel::all();
-        return view('table_customer')->with(['tb_customer' => $tb_customer]);
+        $tb_customer = customerModel::paginate(10);
+        return view('customer.index')->with(['datas' => $tb_customer]);
+    }
+
+    public function cari(Request $request) {
+        $tb_customer = customerModel::where([
+            ['namaLengkap', 'LIKE', $request->get('keyword') . '%']
+        ])->paginate(10);
+        $hasil = $tb_customer->appends ( array ('keyword' => $request->input('keyword')));
+        return view('customer.index')->with(['datas' => $hasil]);
     }
 
     /**
@@ -39,8 +48,16 @@ class TableCustomerController extends Controller
     public function store(Request $request)
     {
         //input data
-        customerModel::create($request->all());
-        return redirect ('table_customer');
+        $responseController = new ResponseController();
+        $response;
+        $insert = customerModel::create($request->all());
+        if ($insert) {
+            $response = $responseController->response(true, 'Berhasil Input Customer');
+        } else {
+            $response = $responseController->response(false, 'Gagal Input Customer');
+        }
+        // var_dump($response);
+        return redirect()->back()->with($response);
     }
 
     /**
@@ -62,7 +79,8 @@ class TableCustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tb_customer = customerModel::where('idCustomer', $id)->first();
+        return view('customer.formedit')->with(['data' => $tb_customer]);
     }
 
     /**
@@ -74,7 +92,20 @@ class TableCustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        unset($data['_token']);
+        $update = customerModel::where('idCustomer', $id)
+                ->update($data);
+        $responseController = new ResponseController();
+        $response;
+        $update = customerModel::create($request->all());
+        if ($update) {
+            $response = $responseController->response(true, 'Berhasil Update Customer');
+        } else {
+            $response = $responseController->response(false, 'Gagal Update Customer');
+        }
+        // var_dump($response);
+        return redirect()->route('homeCustomer')->with($response);
     }
 
     /**
