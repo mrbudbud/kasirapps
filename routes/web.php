@@ -20,6 +20,6 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/customer', 'TableCustomerController@index')->name('homeCustomer');
-    Route::post('/insertcustomer', 'TableCustomerController@store')->name('inserCustomer');
+    Route::post('/insertcustomer', 'TableCustomerController@store')->name('insertCustomer');
 
 });

@@ -93,17 +93,7 @@
 
 				<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
-				<!-- Content Header (Page header) -->
-				<div class="content-header">
-						<div class="container-fluid">
-							<div class="row mb-2">
-								
-								@yield('main_content')
-								
-							</div><!-- /.row -->
-						</div><!-- /.container-fluid -->
-				</div>
-				
+				@yield('main_content')
 			</div>
 			<!-- /.content-wrapper -->
 		
