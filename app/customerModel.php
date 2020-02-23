@@ -9,7 +9,7 @@ class customerModel extends Model
     //terhubung ke
     protected $table = 'tb_customer';
 
-    protected $fillable = ['namaLengkap', 'alamat', 'tanggalLahir', 'nomorHP', 'email'];
+    protected $fillable = ['namaLengkap', 'alamat', 'tanggalLahir', 'nomorHp', 'email'];
 
 
 }

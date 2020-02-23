@@ -59,7 +59,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                                  <form action="(" method="POST">
+                          <form action="{{route('insertCustomer')}}" method="POST">
                                     @csrf
                                     <div class="container-fluid">
                                     <div class="col-12">
@@ -72,7 +72,7 @@
                                           <span class="fas fa-user"></span>
                                         </div>
                                       </div>
-                                        <input type="text" class="form-control" placeholder="Nama Lengkap">
+                                        <input name="namaLengkap" type="text" class="form-control" placeholder="Nama Lengkap">
                                       </div>
                                       <div>
                                         <label for="">Alamat</label>
@@ -83,7 +83,7 @@
                                             <span class="fas fa-map-marked-alt"></span>
                                           </div>
                                         </div>
-                                        <input type="email" class="form-control" placeholder="Alamat">
+                                        <input name="alamat" type="text" class="form-control" placeholder="Alamat">
                                       </div>
                                       <div>
                                         <label for="">Tanggal Lahir</label>
@@ -94,7 +94,7 @@
                                             <span class="fa fa-calendar"></span>
                                           </div>
                                         </div>
-                                        <input type="date" class="form-control" placeholder="Tanggal Lahir">
+                                        <input name="tanggalLahir" type="date" class="form-control" placeholder="Tanggal Lahir">
                                       </div>
                                       <div>
                                         <label for="">Nomor HP/WA</label>
@@ -105,7 +105,7 @@
                                             <span class="fas fa-address-card"></span>
                                           </div>
                                         </div>
-                                        <input type="number" class="form-control" placeholder="Nomor HP/WA">
+                                        <input name="nomorHp" type="number" class="form-control" placeholder="Nomor HP/WA">
                                       </div>
                                       <div>
                                         <label for="">Email</label>
@@ -116,13 +116,13 @@
                                             <span class="fas fa-envelope"></span>
                                           </div>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Email">
+                                        <input name="email" type="email" class="form-control" placeholder="Email">
                                       </div>
                                     </div>
                                   </div>
                                   <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                                    <button type="button" class="btn btn-primary">Simpan Data Costumer</button>
+                                    <button type="submit" class="btn btn-primary">Simpan Data Costumer</button>
                                   </div>
                                 </form>
                           </div>

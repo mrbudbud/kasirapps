@@ -17,7 +17,7 @@ class TableCustomerController extends Controller
     {
         //
         $tb_customer = customerModel::all();
-        return view('table_customer', ['tb_customer' => $tb_customer]);
+        return view('table_customer')->with(['tb_customer' => $tb_customer]);
     }
 
     /**
@@ -40,7 +40,7 @@ class TableCustomerController extends Controller
     {
         //input data
         customerModel::create($request->all());
-        return redirect('table_customer');
+        return redirect ('table_customer');
     }
 
     /**
