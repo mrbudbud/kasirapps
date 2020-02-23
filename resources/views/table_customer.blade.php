@@ -9,6 +9,7 @@
 <section class="container">
   <div class="container-fluid">
       <div class="row">
+        <div class="column">
           <div class="col-xl-12">
               <div class="card card-primary">
                 <div class="card-header">
@@ -135,6 +136,7 @@
                     <!-- /.modal -->
 
             </div>
+        </div>
         </div>
       </div>    
     </div>
