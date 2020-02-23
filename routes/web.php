@@ -16,7 +16,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::group(['middleware' => ['auth','ceklevel:1']], function(){
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/table_customer', 'TableCustomerController@index')->name('table_customer');
-Route::post('/table_customer', 'TableCustomerController@store')->name('table_customer');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/customer', 'TableCustomerController@index')->name('homeCustomer');
+    Route::post('/insertcustomer', 'TableCustomerController@store')->name('inserCustomer');
+
+});
