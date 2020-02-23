@@ -24,22 +24,9 @@
 						<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
 					</li>
 						<li class="nav-item d-none d-sm-inline-block">
-							@yield('header_content')
+
 						</li>
 				</ul>
-
-			<!-- SEARCH FORM -->
-				<form class="form-inline ml-3">
-					<div class="input-group input-group-sm">
-						<input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-							<div class="input-group-append">
-								<button class="btn btn-navbar" type="submit">
-									<i class="fas fa-search"></i>
-								</button>
-							</div>
-					</div>
-				</form>
-					<!--END SEARCH FORM -->
 				<ul class="navbar-nav ml-auto">
 				</ul>
 			</nav>
@@ -92,18 +79,8 @@
 		
 
 				<!-- Content Wrapper. Contains page content -->
-			<div class="content-wrapper">
-				<!-- Content Header (Page header) -->
-				<div class="content-header">
-						<div class="container-fluid">
-							<div class="row mb-2">
-								
-								@yield('main_content')
-								
-							</div><!-- /.row -->
-						</div><!-- /.container-fluid -->
-				</div>
-				
+			<div class="content-wrapper" style="min-height: 926px;">
+				@yield('main_content')
 			</div>
 			<!-- /.content-wrapper -->
 		
