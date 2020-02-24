@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\barangModel;
 use App\customerModel;
 use Illuminate\Http\Request;
+use App\http\Controllers\ResponseController;
 
 class TransaksiController extends Controller
 {
@@ -37,7 +38,22 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        var_dump($data);
+        // $dataUser = customerModel::where('nomorHp', $data['nomo'])
+        // $insert = 
+        // $responseController = new ResponseController();
+        // $response;
+        // if ($insert) {
+        //     $mail = Mail::send('kartumember.index', $data, function($message) use ($data, $pdf){
+        //         $message->to($data['email']);
+        //         $message->attachData($pdf->output(),'card.pdf');
+        //     });
+        //     $response = $responseController->response(true, 'Transaksi Berhasil');
+        // } else {
+        //     $response = $responseController->response(false, 'Transaksi Gagal');
+        // }
+        // return redirect()->back()->with($response);
     }
 
     /**

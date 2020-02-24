@@ -30,7 +30,8 @@
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             @{{ namaMember }} Mempunyai @{{ totalPoint }} Point
           </div>
-          <form action="">
+          <form action="{{ route('insertTransaksi') }}" method="post">
+            @csrf
             <div class="row" v-if="hasPoint">
               <div class="col-md-6 col-xs-12">
                 <div class="input-group mb-3 form-check">
@@ -50,19 +51,22 @@
                 <vue-bootstrap-typeahead
                   v-model="member"
                   :data="listMember"
+                  name="noTelp"
+                  id="noTelp"
                   placeholder="No Telp Member"
                   :serializer="s => s.nomorHp"
                   style="width: 100%"
                   @hit="cekPont($event)"
                   />
                 </div>
+                <input type="text" hidden class="form-control" name="noTelp" readonly v-model="member">
               </div>
               <div class="col-sm-12 col-lg-6">
                 <div>
                   <label for="">Nama</label>
                 </div>
                 <div class="input-group mb-3">
-                <input type="text" class="form-control" readonly v-model="namaMember">
+                <input type="text" class="form-control" name="namaMember" readonly v-model="namaMember">
                 </div>
               </div>
             </div>
@@ -103,6 +107,18 @@
                   <label for="">Total</label>
                 </div>
                 <input type="text" class="form-control" v-model="total" readonly>
+              </div>
+            </div>
+            <div class="row justify-content-xl-start">
+              <div class="col-md-6 col-xs-12">
+                <div>
+                  <label for="">Terapis</label>
+                </div>
+                <select class="form-control" name="terapis">
+                  <option value="1">Raihan</option>
+                  <option value="2">Ziyan</option>
+                  <option value="3">Abu</option>
+                </select>
               </div>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Proses Transaksi</button>

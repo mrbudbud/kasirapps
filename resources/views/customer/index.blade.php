@@ -86,7 +86,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form action="{{route('insertCustomer')}}" method="get">
+      <form action="{{route('insertCustomer')}}" method="post">
                 @csrf
                 <div class="container-fluid">
                 <div class="col-12">

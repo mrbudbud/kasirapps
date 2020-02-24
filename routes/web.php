@@ -18,8 +18,9 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     
-    
+    // transaksi route
     Route::get('/home', 'TransaksiController@index')->name('transaksi');
+    Route::post('/transaksi/insert', 'TransaksiController@store')->name('insertTransaksi');
     
     //admin
     //customer
@@ -44,8 +45,6 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     //atasan
     //terapis
     Route::get('/terapis', 'TerapisController@index')->name('tampilTerapis');
-
-    
     
 });
 

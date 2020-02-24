@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\customerModel;
+use Mail;
+use PDF;
 use App\http\Controllers\ResponseController;
 
 class TableCustomerController extends Controller
@@ -45,18 +47,38 @@ class TableCustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function noTelpAlreadyExist($noTelp) {
+        $cek = customerModel::where('nomorHp', $noTelp)->first();
+        if ($cek) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function store(Request $request)
     {
-        //input data
+        $data = $request->all();
+        // return $pdf->stream('card.pdf');
         $responseController = new ResponseController();
         $response;
-        $insert = customerModel::create($request->all());
-        if ($insert) {
-            $response = $responseController->response(true, 'Berhasil Input Customer');
+        if ($this->noTelpAlreadyExist($data['nomorHp'])) {
+            $response = $responseController->response(false, 'Nomor Hp Telah Digunakan');
         } else {
-            $response = $responseController->response(false, 'Gagal Input Customer');
+            //input data
+            $insert = customerModel::create($request->all());
+            if ($insert) {
+                $pdf = PDF::loadView('kartumember.card', ['data' => $data])->setPaper(array(0,0,360.00,206.2));
+                $mail = Mail::send('kartumember.index', $data, function($message) use ($data, $pdf){
+                    $message->to($data['email']);
+                    $message->attachData($pdf->output(),'card.pdf');
+                });
+                $response = $responseController->response(true, 'Berhasil Input Customer');
+            } else {
+                $response = $responseController->response(false, 'Gagal Input Customer');
+            }
         }
-        // var_dump($response);
+        
         return redirect()->back()->with($response);
     }
 
