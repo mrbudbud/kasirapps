@@ -17,12 +17,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth','ceklevel:1']], function(){
-<<<<<<< HEAD
-=======
-    Route::get('/home', 'TransaksiController@index')->name('transaksi');
->>>>>>> 13dd3624584f38ddc2e7329e2831fef9d3f590a1
     
-    Route::get('/home', 'HomeController@index')->name('transaksi');
+    
+    Route::get('/home', 'TransaksiController@index')->name('transaksi');
+    
     //admin
     //customer
     Route::get('/customer', 'TableCustomerController@index')->name('tampilCustomer');
@@ -39,16 +37,14 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     Route::get('/barang/cari', 'barangController@cari')->name('cariBarang');
     Route::get('/barang/formeditbarang/{id}', 'barangController@edit')->name('formEditBarang');
     Route::post('/barang/update/{id}', 'barangController@update')->name('updateBarang');
-<<<<<<< HEAD
     Route::get('/barang/delete/{id}', 'barangController@destroy')->name('deleteBarang');
+    Route::post('/api/listbarang', 'barangController@apiListBarang');
+
     
     //atasan
     //terapis
     Route::get('/terapis', 'TerapisController@index')->name('tampilTerapis');
 
-=======
-    Route::post('/api/listbarang', 'barangController@apiListBarang');
->>>>>>> 13dd3624584f38ddc2e7329e2831fef9d3f590a1
     
     
 });
