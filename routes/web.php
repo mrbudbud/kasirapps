@@ -21,7 +21,8 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     // transaksi route
     Route::get('/home', 'TransaksiController@index')->name('transaksi');
     Route::post('/transaksi/insert', 'TransaksiController@store')->name('insertTransaksi');
-    
+    Route::post('/api/listbarang', 'barangController@apiListBarang');
+
     //admin
     //customer
     Route::get('/customer', 'TableCustomerController@index')->name('tampilCustomer');
@@ -36,17 +37,23 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     //barang
     Route::get('/barang', 'barangController@index')->name('tampilBarang');
     Route::post('/barang/insertbarang', 'barangController@store')->name('insertBarang');
-    // Route::post('/barang/insertbarang', 'barangController@store')->name('insertJasa');
     Route::get('/barang/cari', 'barangController@cari')->name('cariBarang');
     Route::get('/barang/formeditbarang/{id}', 'barangController@edit')->name('formEditBarang');
     Route::post('/barang/update/{id}', 'barangController@update')->name('updateBarang');
     Route::get('/barang/delete/{id}', 'barangController@destroy')->name('deleteBarang');
-    Route::post('/api/listbarang', 'barangController@apiListBarang');
-
+    
+    
     
     //atasan
     //terapis
     Route::get('/terapis', 'TerapisController@index')->name('tampilTerapis');
+    Route::get('/terapis/tampilbarang', 'barangController@index')->name('tampilBarang');
+    Route::post('/terapis/insertterapis', 'TerapisController@store')->name('insertTerapis');
+    Route::get('/terapis/cari', 'TerapisController@cari')->name('cariTerapis');
+    Route::get('/terapis/formeditterapis/{id}', 'TerapisController@edit')->name('formEditTerapis');
+    Route::post('/terapis/update/{id}', 'TerapisController@update')->name('updateTerapis');
+    Route::get('/terapis/delete/{id}', 'TerapisController@destroy')->name('deleteTerapis');
+    
     
 });
 

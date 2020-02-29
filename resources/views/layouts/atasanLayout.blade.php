@@ -36,7 +36,7 @@
 			<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 					<a href="index3.html" class="brand-link">
-						<center><span class="brand-text font-weight-light">ATASAN</span></center>
+						<center><span class="brand-text font-weight-light">Manager</span></center>
 					</a>
 
 			<!-- Sidebar -->
@@ -57,16 +57,16 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ route('terapis')}}" class="nav-link">
+								<a href="{{ route('tampilTerapis')}}" class="nav-link">
 									<i class="nav-icon fas fa-edit"></i>
 									<p>Data terapis</p>
 								</a>
 							</li>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{ route('tampilBarang')}}" class="nav-link">
 									<i class="nav-icon fas fa-dolly-flatbed"></i>
-									<p>Tambah Barang</p>
+									<p>Data Barang / Jasa</p>
 								</a>
 							</li>
 							<li class="nav-item">
