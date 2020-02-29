@@ -42,24 +42,21 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     Route::post('/barang/update/{id}', 'barangController@update')->name('updateBarang');
     Route::get('/barang/delete/{id}', 'barangController@destroy')->name('deleteBarang');
     
-    
-    
-    //atasan
-    //terapis
-    Route::get('/terapis', 'TerapisController@index')->name('tampilTerapis');
-    Route::get('/terapis/tampilbarang', 'barangController@index')->name('tampilBarang');
-    Route::post('/terapis/insertterapis', 'TerapisController@store')->name('insertTerapis');
-    Route::get('/terapis/cari', 'TerapisController@cari')->name('cariTerapis');
-    Route::get('/terapis/formeditterapis/{id}', 'TerapisController@edit')->name('formEditTerapis');
-    Route::post('/terapis/update/{id}', 'TerapisController@update')->name('updateTerapis');
-    Route::get('/terapis/delete/{id}', 'TerapisController@destroy')->name('deleteTerapis');
-    
-    
 });
 
 
-//akses atasan
-// Route::group(['middleware' => ['auth','ceklevel:2']], function(){
-
+// akses atasan
+Route::group(['middleware' => ['auth','ceklevel:2']], function(){
+    // hari ini
+    Route::get('/atasan', 'TransaksiController@summeryThisDay')->name('summeryThisDay');
+    Route::get('/atasan/bonusharian', 'TerapisController@bonusHarian')->name('bonusHarian');
+    //terapis
+    Route::get('/atasan/terapis', 'TerapisController@index')->name('tampilTerapis');
+    Route::get('/atasan/terapis/tampilbarang', 'barangController@index')->name('tampilBarang');
+    Route::post('/atasan/terapis/insertterapis', 'TerapisController@store')->name('insertTerapis');
+    Route::get('/atasan/terapis/cari', 'TerapisController@cari')->name('cariTerapis');
+    Route::get('/atasan/terapis/formeditterapis/{id}', 'TerapisController@edit')->name('formEditTerapis');
+    Route::post('/atasan/terapis/update/{id}', 'TerapisController@update')->name('updateTerapis');
+    Route::get('/atasan/terapis/delete/{id}', 'TerapisController@destroy')->name('deleteTerapis');
     
-// }); 
+}); 

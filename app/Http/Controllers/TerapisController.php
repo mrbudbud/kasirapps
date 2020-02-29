@@ -71,6 +71,10 @@ class TerapisController extends Controller
         //
     }
 
+    public function bonusHarian () {
+        return view('atasan.terapis.bonusharian');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

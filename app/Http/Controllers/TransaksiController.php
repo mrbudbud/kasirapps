@@ -9,7 +9,6 @@ use Mail;
 use App\http\Controllers\ResponseController;
 use DateTime;
 use Illuminate\Support\Str;
-
 class TransaksiController extends Controller
 {
     /**
@@ -29,9 +28,15 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function summeryThisDay()
     {
-        //
+        date_default_timezone_set('Asia/Jakarta');
+        $datas = Transaksi::whereDate('tb_transaksi.created_at', new DateTime)
+                ->select('tb_transaksi.*', 'tb_terapis.namaTerapis', 'tb_barang.namaProduk')
+                ->join('tb_barang', 'tb_barang.idProduk', '=', 'tb_transaksi.idProduk')
+                ->join('tb_terapis', 'tb_terapis.idTerapis', '=', 'tb_transaksi.idTerapis')
+                ->paginate(10);
+        return view('atasan.transaksi.index')->with('datas', $datas);
     }
 
     /**

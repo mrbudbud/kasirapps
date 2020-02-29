@@ -27,7 +27,13 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
+    protected function redirectTo()
+    {
+        if (auth()->user()->level == 2) {
+            return '/atasan';
+        }
+        return RouteServiceProvider::HOME;
+    }
     /**
      * Create a new controller instance.
      *
