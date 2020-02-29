@@ -8,5 +8,5 @@ class Transaksi extends Model
 {
     protected $table = 'tb_transaksi';
 
-    protected $fillable = ['idTransaksi', 'idProduk', 'harga', 'potongan', 'subTotal', 'total'];
+    protected $fillable = ['idTransaksi', 'idProduk', 'idCustomer', 'harga', 'gunakanPoint', 'point', 'potongan', 'jumlahBeli', 'total', 'idTerapis'];
 }
