@@ -31,10 +31,12 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
     Route::post('/customer/update/{id}', 'TableCustomerController@update')->name('updateCustomer');
     Route::get('/customer/delete/{id}', 'TableCustomerController@destroy')->name('deleteCustomer');
     
+
     //admin
     //barang
     Route::get('/barang', 'barangController@index')->name('tampilBarang');
     Route::post('/barang/insertbarang', 'barangController@store')->name('insertBarang');
+    // Route::post('/barang/insertbarang', 'barangController@store')->name('insertJasa');
     Route::get('/barang/cari', 'barangController@cari')->name('cariBarang');
     Route::get('/barang/formeditbarang/{id}', 'barangController@edit')->name('formEditBarang');
     Route::post('/barang/update/{id}', 'barangController@update')->name('updateBarang');

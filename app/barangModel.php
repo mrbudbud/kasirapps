@@ -8,6 +8,6 @@ class barangModel extends Model
 {
     protected $table ='tb_barang';
 
-    protected $fillable = ['jenisProduk', 'namaProduk', 'quantity', 'harga', 'stock'];
+    protected $fillable = ['kategori','jenisProduk', 'namaProduk', 'quantity', 'satuan', 'harga', 'stock'];
 
 }

@@ -56,17 +56,16 @@
 									<p>Transaksi</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="{{ route('tampilCustomer')}} " class="nav-link">
+									<i class="nav-icon fas fa-table"></i>
+									<p>Custommer</p>
+								</a>
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('tampilBarang')}}" class="nav-link">
 									<i class="nav-icon fas fa-dolly-flatbed"></i>
-									<p>Tambah Barang</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="{{ route('tampilCustomer')}} " class="nav-link">
-									<i class="nav-icon fas fa-table"></i>
-									<p>Tabel Custommer</p>
+									<p>Produk / Jasa</p>
 								</a>
 							</li>
 						</ul>

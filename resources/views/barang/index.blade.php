@@ -21,11 +21,13 @@
               </div>
             @endif
           @endif
+          <div class="">
           <h3 class="card-title">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-            Tambah Barang
+            Tambah Produk
             </button>
           </h3>
+          </div>
           <div class="card-tools pull-right">
             <form action="{{ route('cariBarang')}}" method="get">
               @csrf
@@ -42,9 +44,10 @@
           <table class="table table-hover">
               <thead>
                 <tr>
+                  <th>KATEGORI</th>
                   <th>JENIS PRODUK</th>
                   <th>NAMA PRODUK</th>
-                  <th>QUANTITY (ml)</th>
+                  <th>QUANTITY</th>
                   <th>HARGA</th>
                   <th>STOCK</th>
                   <th>AKSI</th>
@@ -53,9 +56,10 @@
               <tbody>
                 @foreach( $datas as $data)
                 <tr>
+                  <td>{{ $data -> kategori }}</td>
                   <td>{{ $data -> jenisProduk }}</td>
                   <td>{{ $data -> namaProduk }}</td>
-                  <td>{{ $data -> quantity }} ml</td>
+                  <td>{{ $data -> quantity }} ({{ $data -> satuan }})</td>
                   <td>Rp. {{ $data -> harga }},-</td>
                   <td>{{ $data -> stock }}</td>
                   <td>
@@ -75,7 +79,7 @@
   </div>  
 </section>
 
-<!-- /.modal tambah data costumer -->
+<!-- /.modal tambah data produk -->
 <div class="modal fade" id="modal-default">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -90,6 +94,20 @@
                 @csrf
                 <div class="container-fluid">
                 <div class="col-12">
+                <div>
+                  <label for="">Kategori</label>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                    </div>
+                  </div>
+                  <select name="kategori" class="form-control">
+                    <option value="">Pilih Kategori</option>
+                    <option value="Jasa">Jasa</option>
+                    <option value="Produk">Produk</option>
+                  </select>
+                  </div>
                 <div>
                   <label for="">Jenis Produk</label>
                 </div>
@@ -124,7 +142,21 @@
                       <div class="input-group-text">
                       </div>
                     </div>
-                    <input name="quantity" type="number" class="form-control" placeholder="QUANTITY">
+                    <input name="quantity" type="number" class="form-control" placeholder="Quantity">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" name="satuan" value="Mili" id="Mili" class="custom-control-input">
+                      <label class="custom-control-label" for="Mili">Mili</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" name="satuan" value="Gram" id="Gram" class="custom-control-input">
+                      <label class="custom-control-label" for="Gram">Gram</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" name="satuan" value="Set" id="Set" class="custom-control-input">
+                      <label class="custom-control-label" for="Set">Set</label>
+                    </div>
                   </div>
                   <div>
                     <label for="">Harga</label>
@@ -134,7 +166,7 @@
                       <div class="input-group-text">
                       </div>
                     </div>
-                    <input name="harga" type="number" class="form-control" placeholder="HARGA">
+                    <input name="harga" type="number" class="form-control" placeholder="Harga">
                   </div>
                   <div>
                     <label for="">Stock</label></label>
@@ -150,7 +182,7 @@
               </div>
               <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Tambah Barang</button>
+                <button type="submit" class="btn btn-primary">Tambah Produk</button>
               </div>
             </form>
       </div>
