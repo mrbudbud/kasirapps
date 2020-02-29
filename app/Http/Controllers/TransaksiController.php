@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 use App\barangModel;
 use App\customerModel;
+use App\Transaksi;
 use Illuminate\Http\Request;
+use Mail;
 use App\http\Controllers\ResponseController;
+use DateTime;
+use Illuminate\Support\Str;
 
 class TransaksiController extends Controller
 {
@@ -36,24 +40,113 @@ class TransaksiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function cekPoint ($id, $totalTransaksi) {
+        $dataCustomer = customerModel::where('idCustomer', $id)->first();
+        $point = $this->getPointTransaksi($totalTransaksi);
+        $finalPoint = 0;
+        if ($this->cekExpired($dataCustomer['lastTransaksi'])) {
+            $finalPoint = $point + $dataCustomer['point'];
+        } else {
+            $finalPoint = $point;
+        }
+        $this->updatePoint($dataCustomer['idCustomer'], $finalPoint);
+    }
+
+    public function getPointTransaksi($totalTransaksi) {
+        $point = floor($totalTransaksi / 20000);
+        return $point;
+    }
+
+    public function updatePoint ($id, $point) {
+        date_default_timezone_set('Asia/Jakarta');
+        customerModel::where('idCustomer', $id)->update([
+            'point' => $point,
+            'lastTransaksi' => new DateTime()
+        ]);
+    }
+
+    public function cekExpired ($lastTransaksi) {
+        date_default_timezone_set('Asia/Jakarta');
+        $last = new DateTime($lastTransaksi);
+        $now = new DateTime;
+        $hari = date_diff($last, $now);
+        return $hari->days > 240 ? false : true;
+    }
+
+    public function generateIdTransaksi () {
+        return 'TRNS' . Str::random(20);
+    }
+    
     public function store(Request $request)
     {
         $data = $request->all();
-        var_dump($data);
-        // $dataUser = customerModel::where('nomorHp', $data['nomo'])
-        // $insert = 
-        // $responseController = new ResponseController();
-        // $response;
-        // if ($insert) {
-        //     $mail = Mail::send('kartumember.index', $data, function($message) use ($data, $pdf){
-        //         $message->to($data['email']);
-        //         $message->attachData($pdf->output(),'card.pdf');
-        //     });
-        //     $response = $responseController->response(true, 'Transaksi Berhasil');
-        // } else {
-        //     $response = $responseController->response(false, 'Transaksi Gagal');
-        // }
-        // return redirect()->back()->with($response);
+        $gunakanPoint = isset($data['gunakanPoint']) ? $data['gunakanPoint'] : false;
+
+        $dataCustomer = customerModel::where('nomorHp', $data['noTelp'])->first();
+        $newData = [
+            'idTransaksi' => Str::upper($this->generateIdTransaksi()),
+            'idProduk' => $data['idProduk'],
+            'idCustomer' => $dataCustomer['idCustomer'],
+            'harga' => $data['harga'],
+            'gunakanPoint' => isset($data['gunakanPoint']) ? true : false,
+            'point' => $data['point'],
+            'potongan' => $data['potongan'],
+            'jumlahBeli' => $data['jumlahBeli'],
+            'total' => $data['total'],
+            'metodePembayaran' => $data['metodePembayaran'],
+            'idTerapis' => $data['terapis']
+        ];
+        $insert = Transaksi::insert($newData);
+        $responseController = new ResponseController();
+        $response;
+        if ($insert) {
+            if ($gunakanPoint) {
+                $pointSekarang = $dataCustomer['point'];
+                $pointBaru = $pointSekarang - $data['point'];
+                $this->updatePoint($dataCustomer['idCustomer'], $pointBaru);
+            }
+            $dataBarang = barangModel::where('idProduk', $newData['idProduk'])->first();
+            if ($dataBarang->kategori === 'Produk') {
+                $this->updateStok($dataBarang->idProduk, $dataBarang->stock, $newData['jumlahBeli']);
+            }
+            // cek point
+            $this->cekPoint($dataCustomer['idCustomer'], $data['total']);
+            // send mail
+            $mail = Mail::send('transaksi.struk', [
+                'transaksi' => $newData,
+                'barang' => $this->getDataBarang($newData['idProduk']),
+                'getPoint' => $this->getPointTransaksi($newData['total']),
+                'sisaPoint' => $this->getPointSekarang($dataCustomer['idCustomer'])
+            ], function($message) use ($dataCustomer){
+                $message->to($dataCustomer['email']);
+                $message->subject('Transaksi');
+            });
+            $response = $responseController->response(true, 'Transaksi Berhasil');
+        } else {
+            $response = $responseController->response(false, 'Transaksi Gagal');
+        }
+        
+        
+        
+        // return view('transaksi.struk')->with(['transaksi' => $newData,'getPoint' => $this->getPointTransaksi($newData['total']), 'barang' => $this->getDataBarang($newData['idProduk']),'sisaPoint' => $this->getPointSekarang($dataCustomer['idCustomer'])]);
+        
+        return redirect()->back()->with($response);
+    }
+
+    public function getPointSekarang ($id) {
+        $data = customerModel::where('idCustomer', $id)->first();
+        return $data['point'];
+    }
+
+    public function getDataBarang ($id) {
+        return barangModel::where('idProduk', $id)->first()->toArray();
+    }
+
+    public function updateStok ($idBarang, $stokSekarang, $jumlahBeli) {
+        $stokSekarang = $stokSekarang;
+        $stokBaru = $stokSekarang - $jumlahBeli;
+        barangModel::where('idProduk', $idBarang)->update(['stock' => $stokBaru]);
     }
 
     /**
