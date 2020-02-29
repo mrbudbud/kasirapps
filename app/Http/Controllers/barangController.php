@@ -48,7 +48,7 @@ class barangController extends Controller
      */
     public function store(Request $request)
     {
-        //input
+        //input Produk
         $responseController = new responseController();
         $response;
         $insert = barangModel::create($request->all());
