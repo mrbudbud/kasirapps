@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth','ceklevel:2']], function(){
     Route::get('/atasan', 'TransaksiController@summeryThisDay')->name('summeryThisDay');
     Route::get('/atasan/bonusharian', 'TerapisController@bonusHarian')->name('bonusHarian');
     
+    Route::get('/atasan/bonusharian/sendmailall', 'TerapisController@sendAll')->name('sendMail');
     // barang
     Route::get('/atasan/terapis/tampilbarang', 'barangController@index')->name('tampilBarang');
     Route::post('/atasan/barang/insertbarang', 'barangController@store')->name('insertBarang');
@@ -70,4 +71,10 @@ Route::group(['middleware' => ['auth','ceklevel:2']], function(){
     Route::get('/atasan/customer/formedit/{id}', 'TableCustomerController@edit')->name('formEditCustomer');
     Route::post('/atasan/customer/update/{id}', 'TableCustomerController@update')->name('updateCustomer');
     Route::get('/atasan/customer/delete/{id}', 'TableCustomerController@destroy')->name('deleteCustomer');
+    // rekap transaksi
+    Route::get('/atasan/transaksi/rekap', function (){
+        return view('atasan.transaksi.selectrekap');
+    })->name('rekapTransaksi');
+    Route::post('/atasan/transaksi/rekap', 'TransaksiController@showRekap')->name('showRekap');
+
 }); 

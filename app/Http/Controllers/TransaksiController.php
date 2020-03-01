@@ -29,6 +29,60 @@ class TransaksiController extends Controller
         ]);
     }
 
+    public function showRekap (Request $request) {
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $datas;
+        if ($bulan == 0) {
+            $datas = Transaksi::whereYear('tb_transaksi.created_at', $tahun)
+                        ->join('tb_barang' , 'tb_barang.idProduk', '=', 'tb_transaksi.idProduk')
+                        ->paginate(10);
+        } else {
+            $datas = Transaksi::whereMonth('tb_transaksi.created_at', $bulan)
+                        ->whereYear('tb_transaksi.created_at', $tahun)
+                        ->join('tb_barang' , 'tb_barang.idProduk', '=', 'tb_transaksi.idProduk')
+                        ->paginate(10);
+        }
+        $totalKeseluruhan = 0;
+        foreach ($datas as $data) {
+            $totalKeseluruhan += $data['total'];
+        }
+        $bulanTampil = $this->getBulan($bulan);
+        return view('atasan.transaksi.showrekap')->with(['datas' => $datas, 'bulan' => $bulanTampil, 'tahun' => $tahun, 'totalKeseluruhan' => $totalKeseluruhan]);
+    }
+
+    public function getBulan ($bulan) {
+        $show;
+        if ($bulan == 1) {
+            $show = 'Januari';
+        } else if ($bulan == 2) {
+            $show = 'Februari';
+        } else if ($bulan == 3) {
+            $show = 'Maret';
+        } else if ($bulan == 4) {
+            $show = 'April';
+        } else if ($bulan == 5) {
+            $show = 'Mei';
+        } else if ($bulan == 6) {
+            $show = 'Juni';
+        } else if ($bulan == 7) {
+            $show = 'Juli';
+        } else if ($bulan == 8) {
+            $show = 'Agustus';
+        } else if ($bulan == 9) {
+            $show = 'September';
+        } else if ($bulan == 10) {
+            $show = 'Oktober';
+        } else if ($bulan == 11) {
+            $show = 'November';
+        } else if ($bulan == 12) {
+            $show = 'Desember';
+        } else {
+            $show = 'Semua Bulan';
+        }
+        return $show;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -42,7 +96,11 @@ class TransaksiController extends Controller
                 ->join('tb_barang', 'tb_barang.idProduk', '=', 'tb_transaksi.idProduk')
                 ->leftJoin('tb_terapis', 'tb_terapis.idTerapis', '=', 'tb_transaksi.idTerapis')
                 ->paginate(10);
-        return view('atasan.transaksi.index')->with('datas', $datas);
+        $total = 0;
+        foreach ($datas as $data) {
+            $total += $data['total'];
+        }
+        return view('atasan.transaksi.index')->with(['datas' => $datas, 'totalKeseluruhan' => $total]);
     }
 
     /**

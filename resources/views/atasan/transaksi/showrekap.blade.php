@@ -10,7 +10,7 @@
         <div class="card-header">
           <div>
             <h3 class="card-title">
-                Data Transaksi Hari Ini
+                Data Transaksi {{ $bulan . ' ' .$tahun }} 
             </h3>
           </div>
         </div>
