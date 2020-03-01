@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\TerapisModel;
 use App\http\Controllers\ResponseController;
-
+use DateTime;
 
 class TerapisController extends Controller
 {
@@ -72,7 +72,40 @@ class TerapisController extends Controller
     }
 
     public function bonusHarian () {
-        return view('atasan.terapis.bonusharian');
+        $datas = TerapisModel::select('tb_terapis.*', 'tb_transaksi.total')
+            ->whereDate('tb_transaksi.created_at', new DateTime)
+            ->join('tb_transaksi', 'tb_transaksi.idTerapis', '=', 'tb_terapis.idTerapis')
+            ->get()->groupBy('idTerapis')->toArray();
+        // return $datas;
+        $newData = [];
+        foreach ($datas as $data) {
+            // var_dump($data);
+            $hasil = array();
+            $hasil['dataTerapis'] = $data[0];
+            $total = 0;
+            $jumlahTransaksi = sizeof($data);
+            $bonusSatuan = 0;
+            $transaksi = array();
+            for ($i=0; $i < sizeof($data); $i++) { 
+                $total += $data[$i]['total'];
+                $persentase;
+                if ($i >= 4) {
+                    $persentase = 0.05;
+                } else {
+                    $persentase = 0.025;
+                }
+                $bonusSatuan += $data[$i]['total'] * $persentase;
+                array_push($transaksi, $data[$i]);
+                // echo $data[$i]['total'];
+            }
+            $hasil['bonus'] = $bonusSatuan;
+            $hasil['total'] = $total;
+            $hasil['jumlahTransaksi'] = $jumlahTransaksi;
+            $hasil['transaksi'] = $transaksi;
+            array_push($newData, $hasil);
+        }
+        // return $newData;
+        return view('atasan.terapis.bonusharian')->with('datas', $newData);
     }
 
     /**

@@ -35,12 +35,8 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
 
     //admin
     //barang
-    Route::get('/barang', 'barangController@index')->name('tampilBarang');
-    Route::post('/barang/insertbarang', 'barangController@store')->name('insertBarang');
-    Route::get('/barang/cari', 'barangController@cari')->name('cariBarang');
-    Route::get('/barang/formeditbarang/{id}', 'barangController@edit')->name('formEditBarang');
-    Route::post('/barang/update/{id}', 'barangController@update')->name('updateBarang');
-    Route::get('/barang/delete/{id}', 'barangController@destroy')->name('deleteBarang');
+    Route::get('/barang', 'barangController@index')->name('tampilBarangKasir');
+    Route::get('/barang/cari', 'barangController@cari')->name('cariBarangKasir');
     
 });
 
@@ -50,9 +46,15 @@ Route::group(['middleware' => ['auth','ceklevel:2']], function(){
     // hari ini
     Route::get('/atasan', 'TransaksiController@summeryThisDay')->name('summeryThisDay');
     Route::get('/atasan/bonusharian', 'TerapisController@bonusHarian')->name('bonusHarian');
+    // barang
+    Route::get('/atasan/terapis/tampilbarang', 'barangController@index')->name('tampilBarang');
+    Route::post('/atasan/barang/insertbarang', 'barangController@store')->name('insertBarang');
+    Route::get('/atasan/barang/cari', 'barangController@cari')->name('cariBarang');
+    Route::get('/atasan/barang/formeditbarang/{id}', 'barangController@edit')->name('formEditBarang');
+    Route::post('/atasan/barang/update/{id}', 'barangController@update')->name('updateBarang');
+    Route::get('/atasan/barang/delete/{id}', 'barangController@destroy')->name('deleteBarang');
     //terapis
     Route::get('/atasan/terapis', 'TerapisController@index')->name('tampilTerapis');
-    Route::get('/atasan/terapis/tampilbarang', 'barangController@index')->name('tampilBarang');
     Route::post('/atasan/terapis/insertterapis', 'TerapisController@store')->name('insertTerapis');
     Route::get('/atasan/terapis/cari', 'TerapisController@cari')->name('cariTerapis');
     Route::get('/atasan/terapis/formeditterapis/{id}', 'TerapisController@edit')->name('formEditTerapis');

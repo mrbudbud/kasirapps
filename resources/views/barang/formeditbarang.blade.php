@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.atasanLayout')
 
 @section('header_content')
     <a class="nav-link">Table Barang</a>

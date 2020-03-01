@@ -63,7 +63,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ route('tampilBarang')}}" class="nav-link">
+								<a href="{{ route('tampilBarangKasir')}}" class="nav-link">
 									<i class="nav-icon fas fa-dolly-flatbed"></i>
 									<p>Produk / Jasa</p>
 								</a>

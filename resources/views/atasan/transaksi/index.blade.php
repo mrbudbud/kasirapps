@@ -36,7 +36,7 @@
                 <td>{{ $data->harga * $data->jumlahBeli }}</td>
                 <td>{{ $data->potongan }}</td>
                 <td>{{ $data->total }}</td>
-                <td>{{ $data->namaTerapis }}</td>
+                <td>{{ $data->namaTerapis === null ? '-' : $data->namaTerapis }}</td>
               </tr>
             @endforeach
             </tbody>

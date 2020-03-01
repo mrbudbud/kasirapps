@@ -9,6 +9,7 @@ use Mail;
 use App\http\Controllers\ResponseController;
 use DateTime;
 use Illuminate\Support\Str;
+use App\TerapisModel;
 class TransaksiController extends Controller
 {
     /**
@@ -20,7 +21,12 @@ class TransaksiController extends Controller
     {
         $listBarang = barangModel::all();
         $listMember = customerModel::all();
-        return view('transaksi.index')->with(['listData' => $listBarang, 'listMember' => $listMember]);
+        $listTerapis = TerapisModel::all();
+        return view('transaksi.index')->with([
+            'listData' => $listBarang,
+            'listMember' => $listMember,
+            'listTerapis' => $listTerapis
+        ]);
     }
 
     /**
@@ -34,7 +40,7 @@ class TransaksiController extends Controller
         $datas = Transaksi::whereDate('tb_transaksi.created_at', new DateTime)
                 ->select('tb_transaksi.*', 'tb_terapis.namaTerapis', 'tb_barang.namaProduk')
                 ->join('tb_barang', 'tb_barang.idProduk', '=', 'tb_transaksi.idProduk')
-                ->join('tb_terapis', 'tb_terapis.idTerapis', '=', 'tb_transaksi.idTerapis')
+                ->leftJoin('tb_terapis', 'tb_terapis.idTerapis', '=', 'tb_transaksi.idTerapis')
                 ->paginate(10);
         return view('atasan.transaksi.index')->with('datas', $datas);
     }
@@ -97,10 +103,10 @@ class TransaksiController extends Controller
             'gunakanPoint' => isset($data['gunakanPoint']) ? true : false,
             'point' => $data['point'],
             'potongan' => $data['potongan'],
-            'jumlahBeli' => $data['jumlahBeli'],
+            'jumlahBeli' => isset($data['jumlahBeli']) ? $data['jumlahBeli'] : 1,
             'total' => $data['total'],
             'metodePembayaran' => $data['metodePembayaran'],
-            'idTerapis' => $data['terapis']
+            'idTerapis' => isset($data['terapis']) ? $data['terapis'] : null
         ];
         $insert = Transaksi::insert($newData);
         $responseController = new ResponseController();

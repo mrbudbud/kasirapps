@@ -1,4 +1,4 @@
-@extends('layouts.atasanLayout')
+@extends('layouts.master')
 
 
 @section('main_content')
@@ -23,13 +23,11 @@
           @endif
           <div class="">
           <h3 class="card-title">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-            Tambah Produk
-            </button>
+            Barang / Jasa
           </h3>
           </div>
           <div class="card-tools pull-right">
-            <form action="{{ route('cariBarang')}}" method="get">
+            <form action="{{ route('cariBarangKasir')}}" method="get">
               @csrf
               <div class="input-group input-group-md">
                 <input placeholder="Nama Barang" name="keyword" type="text" class="form-control">
@@ -50,7 +48,6 @@
                   <th>QUANTITY</th>
                   <th>HARGA</th>
                   <th>STOCK</th>
-                  <th>AKSI</th>
                 </tr>
               </thead>
               <tbody>
@@ -62,12 +59,6 @@
                   <td>{{ $data -> quantity }} ({{ $data -> satuan }})</td>
                   <td>Rp. {{ $data -> harga }},-</td>
                   <td>{{ $data -> stock }}</td>
-                  <td>
-                    <a href="{{ route('formEditBarang', $data->idProduk)}}" class="btn btn-warning">Edit</a>
-                    <a href="{{ route('deleteBarang', $data->idProduk) }}">
-                      <button class="btn btn-danger" onclick="return konfirmasi()">Hapus</button>
-                    </a>
-                    </td>
                 </tr>
                 @endforeach
               </tbody>

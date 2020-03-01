@@ -114,14 +114,14 @@
               </div>
             </div>
             <div class="row justify-content-xl-start">
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-6 col-xs-12" v-if="dataBarang.kategori === 'Jasa'" >
                 <div>
                   <label for="">Terapis</label>
                 </div>
                 <select class="form-control" name="terapis">
-                  <option value="1">Raihan</option>
-                  <option value="2">Ziyan</option>
-                  <option value="3">Abu</option>
+                  @foreach($listTerapis as $terapis)
+                  <option value="{{$terapis->idTerapis}}">{{ $terapis->namaTerapis }}</option>
+                  @endforeach
                 </select>
               </div>
               <div class="col-md-6 col-xs-12">

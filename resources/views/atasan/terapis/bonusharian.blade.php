@@ -18,16 +18,22 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                  <th>Id Transaksi</th>
-                  <th>Barang / Jasa</th>
-                  <th>Jumlah</th>
-                  <th>Sub Total</th>
-                  <th>Potongan</th>
-                  <th>Total</th>
-                  <th>Terapis</th>
+                  <th>Nama Terapis</th>
+                  <th>Nomor Telp</th>
+                  <th>E-Mail</th>
+                  <th>Bonus Hari Ini</th>
                 </tr>
             </thead>
             <tbody>
+              @foreach( $datas as $data)
+                <tr>
+                  <td>{{ $data['dataTerapis']['namaTerapis'] }}</td>
+                  <td>{{ $data['dataTerapis']['noTelepon'] }}</td>
+                  <td>{{ $data['dataTerapis']['email'] }}</td>
+                  <td>Rp. {{ number_format($data['bonus'], 0, '.', '.') }},-</td>
+                </tr>
+              @endforeach
+            </body>
         </div>
     </div>
     </div>

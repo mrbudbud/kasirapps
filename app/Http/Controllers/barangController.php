@@ -18,7 +18,11 @@ class barangController extends Controller
     {
 
         $tb_barang = barangModel::paginate(6);
-        return view('barang.index')->with(['datas' => $tb_barang ]);
+        if (Auth()->user()->level == 2) {
+            return view('barang.index')->with(['datas' => $tb_barang ]);
+        } else {
+            return view('barang.baranginkasir')->with(['datas' => $tb_barang ]);
+        }
     }
 
     public function cari(Request $request){
@@ -26,7 +30,11 @@ class barangController extends Controller
             ['namaProduk', 'LIKE', $request->get('keyword') . '%']
         ])->paginate(6);
         $hasil = $tb_barang->appends ( array('keyword' => $request->input('keyword')));
-        return view('barang.index')->with(['datas' => $hasil]);
+        if (Auth()->user()->level == 2) {
+            return view('barang.index')->with(['datas' => $hasil]);
+        } else {
+            return view('barang.baranginkasir')->with(['datas' => $hasil]);
+        }
     }
 
 
