@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\TerapisModel;
 use App\http\Controllers\ResponseController;
 use DateTime;
+use Mail;
 
 class TerapisController extends Controller
 {
@@ -72,14 +73,19 @@ class TerapisController extends Controller
     }
 
     public function bonusHarian () {
-        $datas = TerapisModel::select('tb_terapis.*', 'tb_transaksi.total')
+        
+        $newData = $this->dataBonusHarian();
+        return view('atasan.terapis.bonusharian')->with('datas', $newData);
+    }
+
+    public function dataBonusHarian () {
+        $datas = TerapisModel::select('tb_terapis.*', 'tb_transaksi.total', 'tb_barang.namaProduk', 'tb_transaksi.harga')
             ->whereDate('tb_transaksi.created_at', new DateTime)
             ->join('tb_transaksi', 'tb_transaksi.idTerapis', '=', 'tb_terapis.idTerapis')
+            ->join('tb_barang', 'tb_barang.idProduk', '=', 'tb_transaksi.idProduk')
             ->get()->groupBy('idTerapis')->toArray();
-        // return $datas;
         $newData = [];
         foreach ($datas as $data) {
-            // var_dump($data);
             $hasil = array();
             $hasil['dataTerapis'] = $data[0];
             $total = 0;
@@ -94,6 +100,8 @@ class TerapisController extends Controller
                 } else {
                     $persentase = 0.025;
                 }
+                $data[$i]['persentase'] = $persentase;
+                $data[$i]['bonusSatuan'] = $data[$i]['total'] * $persentase;
                 $bonusSatuan += $data[$i]['total'] * $persentase;
                 array_push($transaksi, $data[$i]);
                 // echo $data[$i]['total'];
@@ -104,8 +112,24 @@ class TerapisController extends Controller
             $hasil['transaksi'] = $transaksi;
             array_push($newData, $hasil);
         }
-        // return $newData;
-        return view('atasan.terapis.bonusharian')->with('datas', $newData);
+        return $newData;
+    }
+
+    public function sendAll () {
+        $datas = $this->dataBonusHarian();
+        foreach ($datas as $data) {
+            $this->sendMail($data);
+        }
+        $responseController = new ResponseController();
+        $response = $responseController->response(true, 'Berhasil Mengirim E-Mail');
+        return redirect()->back()->with($response);
+    }
+
+    public function sendMail ($dataCustomer) {
+        $mail = Mail::send('atasan.terapis.mail', ['data' => $dataCustomer], function($message) use ($dataCustomer){
+            $message->to($dataCustomer['dataTerapis']['email']);
+            $message->subject('Bonus Harian');
+        });
     }
 
     /**
@@ -132,7 +156,6 @@ class TerapisController extends Controller
     {
         //
         $data = $request->all();
-        var_dump($data);
         unset($data['_token']);
         $update = terapisModel::where('idTerapis', $id)
                 ->update($data);
