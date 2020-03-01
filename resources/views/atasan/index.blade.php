@@ -98,7 +98,7 @@
                         <div class="input-group-text">
                         </div>
                         </div>
-                        <input name="namaTerapis" type="text" class="form-control" placeholder="Nama Terapis">
+                        <input required name="namaTerapis" type="text" class="form-control" placeholder="Nama Terapis">
                     </div>
                     <div>
                         <label for="">No Telepon / WA</label>
@@ -108,7 +108,7 @@
                         <div class="input-group-text">
                         </div>
                         </div>
-                        <input name="noTelepon" type="number" class="form-control" placeholder="Nomor Telepon / WA">
+                        <input required name="noTelepon" type="number" class="form-control" placeholder="Nomor Telepon / WA">
                     </div>
                     <div>
                         <label for="">Alamat</label>
@@ -118,7 +118,7 @@
                         <div class="input-group-text">
                         </div>
                         </div>
-                        <input name="alamat" type="text" class="form-control" placeholder="Alamat">
+                        <input required name="alamat" type="text" class="form-control" placeholder="Alamat">
                     </div>
                     <div>
                         <label for="">Email</label>
@@ -128,7 +128,7 @@
                         <div class="input-group-text">
                         </div>
                         </div>
-                        <input name="email" type="email" class="form-control" placeholder="Email">
+                        <input required name="email" type="email" class="form-control" placeholder="Email">
                     </div>
                     </div>
                 </div>
