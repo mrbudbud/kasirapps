@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.atasanLayout')
 
 
 @section('main_content')

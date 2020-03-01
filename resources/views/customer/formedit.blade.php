@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.atasanlayout')
 
 @section('header_content')
     <a class="nav-link">Table Costumer</a>

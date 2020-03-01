@@ -25,14 +25,13 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
 
     //admin
     //customer
-    Route::get('/customer', 'TableCustomerController@index')->name('tampilCustomer');
-    Route::post('/customer/insertcustomer', 'TableCustomerController@store')->name('insertCustomer');
-    Route::get('/customer/cari', 'TableCustomerController@cari')->name('cariCustomer');
-    Route::get('/customer/formedit/{id}', 'TableCustomerController@edit')->name('formEditCustomer');
-    Route::post('/customer/update/{id}', 'TableCustomerController@update')->name('updateCustomer');
-    Route::get('/customer/delete/{id}', 'TableCustomerController@destroy')->name('deleteCustomer');
+    Route::get('/customer', 'TableCustomerController@index')->name('tampilCustomerKasir');
+    Route::post('/customer/insertcustomer', 'TableCustomerController@store')->name('insertCustomerKasir');
+    Route::get('/customer/cari', 'TableCustomerController@cari')->name('cariCustomerKasir');
+    Route::get('/customer/formedit/{id}', 'TableCustomerController@edit')->name('formEditCustomerKasir');
+    Route::post('/customer/update/{id}', 'TableCustomerController@update')->name('updateCustomerKasir');
+    Route::get('/customer/delete/{id}', 'TableCustomerController@destroy')->name('deleteCustomerKasir');
     
-
     //admin
     //barang
     Route::get('/barang', 'barangController@index')->name('tampilBarangKasir');
@@ -41,11 +40,13 @@ Route::group(['middleware' => ['auth','ceklevel:1']], function(){
 });
 
 
-// akses atasan
+//  akses atasan
 Route::group(['middleware' => ['auth','ceklevel:2']], function(){
+
     // hari ini
     Route::get('/atasan', 'TransaksiController@summeryThisDay')->name('summeryThisDay');
     Route::get('/atasan/bonusharian', 'TerapisController@bonusHarian')->name('bonusHarian');
+    
     // barang
     Route::get('/atasan/terapis/tampilbarang', 'barangController@index')->name('tampilBarang');
     Route::post('/atasan/barang/insertbarang', 'barangController@store')->name('insertBarang');
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['auth','ceklevel:2']], function(){
     Route::get('/atasan/barang/formeditbarang/{id}', 'barangController@edit')->name('formEditBarang');
     Route::post('/atasan/barang/update/{id}', 'barangController@update')->name('updateBarang');
     Route::get('/atasan/barang/delete/{id}', 'barangController@destroy')->name('deleteBarang');
+    
     //terapis
     Route::get('/atasan/terapis', 'TerapisController@index')->name('tampilTerapis');
     Route::post('/atasan/terapis/insertterapis', 'TerapisController@store')->name('insertTerapis');
@@ -61,4 +63,11 @@ Route::group(['middleware' => ['auth','ceklevel:2']], function(){
     Route::post('/atasan/terapis/update/{id}', 'TerapisController@update')->name('updateTerapis');
     Route::get('/atasan/terapis/delete/{id}', 'TerapisController@destroy')->name('deleteTerapis');
     
+    //customer
+    Route::get('/atasan/customer', 'TableCustomerController@index')->name('tampilCustomer');
+    Route::post('/atasan/customer/insertcustomer', 'TableCustomerController@store')->name('insertCustomer');
+    Route::get('/atasan/customer/cari', 'TableCustomerController@cari')->name('cariCustomer');
+    Route::get('/atasan/customer/formedit/{id}', 'TableCustomerController@edit')->name('formEditCustomer');
+    Route::post('/atasan/customer/update/{id}', 'TableCustomerController@update')->name('updateCustomer');
+    Route::get('/atasan/customer/delete/{id}', 'TableCustomerController@destroy')->name('deleteCustomer');
 }); 

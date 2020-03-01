@@ -57,7 +57,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="{{ route('tampilCustomer')}} " class="nav-link">
+								<a href="{{ route('tampilCustomerKasir')}} " class="nav-link">
 									<i class="nav-icon fas fa-table"></i>
 									<p>Custommer</p>
 								</a>

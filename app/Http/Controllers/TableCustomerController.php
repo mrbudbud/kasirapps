@@ -20,7 +20,11 @@ class TableCustomerController extends Controller
     {
         //
         $tb_customer = customerModel::paginate(6);
-        return view('customer.index')->with(['datas' => $tb_customer]);
+        if (Auth()->user()->level == 2) {
+            return view('customer.index')->with(['datas' => $tb_customer]);
+        } else {
+            return view('customer.customerinkasir')->with(['datas' => $tb_customer ]);
+        }
     }
 
     public function cari(Request $request) {
@@ -28,7 +32,12 @@ class TableCustomerController extends Controller
             ['namaLengkap', 'LIKE', $request->get('keyword') . '%']
         ])->paginate(6);
         $hasil = $tb_customer->appends ( array ('keyword' => $request->input('keyword')));
-        return view('customer.index')->with(['datas' => $hasil]);
+        if (Auth()->user()->level == 2) {
+            return view('customer.index')->with(['datas' => $hasil]);
+        } else {
+            return view('customer.customerinkasir')->with(['datas' => $hasil]);
+        }
+        
     }
 
     /**
@@ -102,7 +111,13 @@ class TableCustomerController extends Controller
     public function edit($id)
     {
         $tb_customer = customerModel::where('idCustomer', $id)->first();
-        return view('customer.formedit')->with(['data' => $tb_customer]);
+        if (Auth()->user()->level == 2) {
+            return view('customer.formedit')->with(['data' => $tb_customer]);
+        } else {
+            return view('customer.formeditcustomerinkasir')->with(['datas' => $tb_customer ]);
+        }
+        
+        
     }
 
     /**
@@ -125,7 +140,12 @@ class TableCustomerController extends Controller
         } else {
             $response = $responseController->response(false, 'Gagal Update Customer');
         }
-        return redirect()->route('tampilCustomer')->with($response);
+        if (Auth()->user()->level == 2) {
+            return redirect()->route('tampilCustomer')->with($response);
+        } else {
+            return redirect()->route('tampilCustomerKasir')->with($response);
+        }
+        
     }
 
     /**
