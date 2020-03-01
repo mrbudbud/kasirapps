@@ -71,20 +71,20 @@
 							<li class="nav-item">
 								<a href="{{ route('tampilTerapis')}}" class="nav-link">
 									<i class="nav-icon fas fa-edit"></i>
-									<p>Data terapis</p>
+									<p>terapis</p>
 								</a>
 							</li>
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('tampilBarang')}}" class="nav-link">
 									<i class="nav-icon fas fa-dolly-flatbed"></i>
-									<p>Data Barang / Jasa</p>
+									<p></p>Barang / Jasa</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{ route('tampilCustomer') }}" class="nav-link">
 									<i class="nav-icon fas fa-table"></i>
-									<p>Tabel Custommer</p>
+									<p>Custommer</p>
 								</a>
 							</li>
 							<li class="nav-item">
