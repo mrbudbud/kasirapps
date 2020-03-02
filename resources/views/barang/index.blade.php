@@ -102,37 +102,44 @@
                     <div class="input-group-text">
                     </div>
                   </div>
-                  <select name="kategori" class="form-control">
+                  <select name="kategori" class="form-control" required>
                     <option value="">Pilih Kategori</option>
                     <option value="Jasa">Jasa</option>
                     <option value="Produk">Produk</option>
                   </select>
                   </div>
                 <div>
-                  <label for="">Jenis Produk</label>
+                  <label for="">Jenis Produk / Jasa</label>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-append">
                     <div class="input-group-text">
                     </div>
                   </div>
-                  <select name="jenisProduk" class="form-control"> jenis
+                  <select name="jenisProduk" class="form-control" required>
                     <option value="">Pilih Jenis Produk</option>
                     <option value="V LINE (VITA ADVANCED)">V Line (Vita Advanced)</option>
                     <option value="W LINE (WHITE GLOW)">W LineE (White Glow)</option>
                     <option value="TRAVEL KIT">Travel Kit</option>
                     <option value="SMART SKIN CREAM">Smart Skin Cream</option>
+                    <option value="Tangan">Tangan</option>
+                    <option value="Nails Extension by Assistant">Nails Extension by Assistant</option>
+                    <option value="Nails Extension by Owner">Nails Extension by Owner</option>
+                    <option value="Eyelash">Eyelash</option>
+                    <option value="Kaki">Kaki</option>
+                    <option value="Sulam Alis">Sulam Alis</option>
+                    <option value="Sulam Bibir">Sulam Bibir</option>
                   </select>
                   </div>
                   <div>
-                    <label for="">Nama Produk</label>
+                    <label for="">Nama Produk / Jasa</label>
                   </div>
                   <div class="input-group mb-3">
                     <div class="input-group-append">
                       <div class="input-group-text">
                       </div>
                     </div>
-                    <input name="namaProduk" type="text" class="form-control" placeholder="Nama Produk">
+                    <input required name="namaProduk" type="text" class="form-control" placeholder="Nama Produk">
                   </div>
                   <div>
                     <label for="">Quantity</label>
@@ -142,7 +149,7 @@
                       <div class="input-group-text">
                       </div>
                     </div>
-                    <input name="quantity" type="number" class="form-control" placeholder="Quantity">
+                    <input value="0" name="quantity" type="number" class="form-control" placeholder="Quantity">
                   </div>
                   <div class="input-group mb-3">
                     <div class="custom-control custom-radio custom-control-inline">
@@ -166,7 +173,7 @@
                       <div class="input-group-text">
                       </div>
                     </div>
-                    <input name="harga" type="number" class="form-control" placeholder="Harga">
+                    <input required name="harga" type="number" class="form-control" placeholder="Harga">
                   </div>
                   <div>
                     <label for="">Stock</label></label>
@@ -176,7 +183,7 @@
                       <div class="input-group-text">
                       </div>
                     </div>
-                    <input name="stock" type="number" class="form-control" placeholder="stock">
+                    <input value="0" name="stock" type="number" class="form-control" placeholder="stock">
                   </div>
                 </div>
               </div>

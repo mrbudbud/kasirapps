@@ -24,10 +24,10 @@ class TerapisController extends Controller
 
     public function cari(Request $request){
         $tb_barang = terapisModel::where([
-            ['namaProduk', 'LIKE', $request->get('keyword') . '%']
+            ['namaTerapis', 'LIKE', $request->get('keyword') . '%']
         ])->paginate(6);
         $hasil = $tb_barang->appends ( array('keyword' => $request->input('keyword')));
-        return view('barang.index')->with(['datas' => $hasil]);
+        return view('atasan.index')->with(['datas' => $hasil]);
     }
 
     /**

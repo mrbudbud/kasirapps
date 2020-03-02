@@ -99,7 +99,7 @@
                       <span class="fas fa-user"></span>
                     </div>
                   </div>
-                    <input name="namaLengkap" type="text" class="form-control" placeholder="Nama Lengkap">
+                    <input required name="namaLengkap" type="text" class="form-control" placeholder="Nama Lengkap">
                   </div>
                   <div>
                     <label for="">Alamat</label>
@@ -110,7 +110,7 @@
                         <span class="fas fa-map-marked-alt"></span>
                       </div>
                     </div>
-                    <input name="alamat" type="text" class="form-control" placeholder="Alamat">
+                    <input required name="alamat" type="text" class="form-control" placeholder="Alamat">
                   </div>
                   <div>
                     <label for="">Tanggal Lahir</label>
@@ -121,7 +121,7 @@
                         <span class="fa fa-calendar"></span>
                       </div>
                     </div>
-                    <input name="tanggalLahir" type="date" class="form-control" placeholder="Tanggal Lahir">
+                    <input required name="tanggalLahir" type="date" class="form-control" placeholder="Tanggal Lahir">
                   </div>
                   <div>
                     <label for="">Nomor HP/WA</label>
@@ -132,7 +132,7 @@
                         <span class="fas fa-address-card"></span>
                       </div>
                     </div>
-                    <input name="nomorHp" type="number" class="form-control" placeholder="Nomor HP/WA">
+                    <input required name="nomorHp" type="number" class="form-control" placeholder="Nomor HP/WA">
                   </div>
                   <div>
                     <label for="">Email</label>
@@ -143,7 +143,7 @@
                         <span class="fas fa-envelope"></span>
                       </div>
                     </div>
-                    <input name="email" type="email" class="form-control" placeholder="Email">
+                    <input required name="email" type="email" class="form-control" placeholder="Email">
                   </div>
                 </div>
               </div>

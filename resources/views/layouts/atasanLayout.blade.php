@@ -52,44 +52,44 @@
 							with font-awesome or any other icon font library -->
 							<li class="nav-item">
 								<a href="{{ route('summeryThisDay') }}" class="nav-link">
-									<i class="nav-icon fas fa-edit"></i>
+									<i class="nav-icon fas fa-money-bill-alt"> </i>
 									<p>Transaksi Hari Ini</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('bonusHarian') }}" class="nav-link">
-									<i class="nav-icon fas fa-edit"></i>
-									<p>Bonus Harian</p>
+									<i class="nav-icon fas fa-hand-holding-usd"></i>
+									<p>Bonus Harian Terapis</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('rekapTransaksi') }}" class="nav-link">
-									<i class="nav-icon fas fa-edit"></i>
+									<i class="nav-icon fas fa-chart-line"></i>
 									<p>Rekap Transaksi</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('tampilTerapis')}}" class="nav-link">
-									<i class="nav-icon fas fa-edit"></i>
-									<p>terapis</p>
+									<i class="nav-icon fas fa-user-check"></i>
+									<p>Terapis</p>
 								</a>
 							</li>
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('tampilBarang')}}" class="nav-link">
 									<i class="nav-icon fas fa-dolly-flatbed"></i>
-									<p></p>Barang / Jasa</p>
+									<p>Barang / Jasa</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('tampilCustomer') }}" class="nav-link">
-									<i class="nav-icon fas fa-table"></i>
+									<i class="nav-icon fas fa-user-friends"></i>
 									<p>Custommer</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
-									<i class="nav-icon fas fa-table"></i>
+									<i class="nav-icon fas fa-sign-out-alt"></i>
 									<p>Logout</p>
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 											@csrf
@@ -119,11 +119,7 @@
 
 			<!-- Main Footer -->
 			<footer class="main-footer">
-				<strong>Copyright &copy; 2020</a>.</strong>
-				All rights reserved.
-				<div class="float-right d-none d-sm-inline-block">
-						<b>Version</b> 1.0
-				</div>
+				<strong>Coco Eyelash &copy; 2020</a>.</strong>
 			</footer>
 		</div>
 		<!-- ./wrapper -->

@@ -58,7 +58,7 @@
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('tampilCustomerKasir')}} " class="nav-link">
-									<i class="nav-icon fas fa-table"></i>
+									<i class="nav-icon fas fa-user-friends"></i>
 									<p>Custommer</p>
 								</a>
 							</li>
@@ -70,7 +70,7 @@
 							</li>
 							<li class="nav-item">
 								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
-									<i class="nav-icon fas fa-table"></i>
+									<i class="nav-icon fas fa-sign-out-alt"></i>
 									<p>Logout</p>
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 											@csrf

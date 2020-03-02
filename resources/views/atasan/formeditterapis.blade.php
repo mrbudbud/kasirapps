@@ -25,7 +25,7 @@
 							<div class="input-group-text">
 							</div>
 						</div>
-							<input value="{{ $data->namaTerapis }}" name="namaTerapis" type="text" class="form-control" placeholder="Nama Terapis">
+							<input required value="{{ $data->namaTerapis }}" name="namaTerapis" type="text" class="form-control" placeholder="Nama Terapis">
 						</div>
 						<div>
 							<label for="">Nomor Telepon / WA</label>
@@ -35,7 +35,7 @@
 							<div class="input-group-text">
 							</div>
 							</div>
-							<input value="{{ $data->noTelepon }}" name="noTelepon" type="number" class="form-control" placeholder="No Telepon / WA">
+							<input required value="{{ $data->noTelepon }}" name="noTelepon" type="number" class="form-control" placeholder="No Telepon / WA">
 						</div>
 						<div>
 							<label for="">Alamat</label>
@@ -45,7 +45,7 @@
 							<div class="input-group-text">
 							</div>
 							</div>
-							<input value="{{ $data->alamat }}" name="alamat" type="text" class="form-control" placeholder="Alamat">
+							<input required value="{{ $data->alamat }}" name="alamat" type="text" class="form-control" placeholder="Alamat">
 						</div>
 						<div>
 							<label for="">Email</label>
@@ -55,7 +55,7 @@
 							<div class="input-group-text">
 							</div>
 							</div>
-							<input value="{{ $data->email }}" name="email" type="email" class="form-control" placeholder="Email">
+							<input required value="{{ $data->email }}" name="email" type="email" class="form-control" placeholder="Email">
 						</div>
 					</div>
 					</div>
